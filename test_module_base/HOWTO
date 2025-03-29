@@ -1,0 +1,14 @@
+Run unit tests with:
+
+For current main: 
+node unit_test-v2-main.js
+
+For development version in repo/branch: chess-pairing-dev/v3-dev:
+node unit_test-v3-dev.js
+
+
+Your repo is accessible (readonly) at /home/tester/repo
+
+If big warning msg about reparsing as module happens,
+this is not shown on the latest nodejs versions,
+proposed fix doesn't work, so ignore it.

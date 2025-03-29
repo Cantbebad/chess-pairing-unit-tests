@@ -1,0 +1,8 @@
+run-config.source.sh
+
+package-lock.json
+repo
+
+venv/
+node_modules/
+nodeenv/
