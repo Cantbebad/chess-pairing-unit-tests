@@ -46,7 +46,7 @@ import { TestCtx } from '../repo/modules/SimpleUnitTester.js'
 
 import { TestTournament } from './tests/v3/unit_test_tournament.js'
 import { TestBergerPairing } from './tests/v3/unit_test_berger_pairing.js'
-import { TestController } from './tests/v3/unit_test_controlle.js'
+import { TestController } from './tests/v3/unit_test_controller.js'
 
 let ctx = new TestCtx()
 
