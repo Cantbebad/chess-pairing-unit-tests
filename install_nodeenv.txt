@@ -9,14 +9,16 @@ python -m venv venv
 
 pip install nodeenv  # alternative: install with npm (js), pip is python instaler
 
-. ./nodeenv/bin/activate # activate nodejs virtual environment
 nodeenv nodenev  # creates nodeenv dir and downloads latest nodejs
+. ./nodeenv/bin/activate # activate nodejs virtual environment
 
 node --version
 # Node.js v23.xx.x
 
 # you need to create symlink in thin root dir to your repo
-ln -s ../tour_repo_path repo
+ln -s ../to_your_repo_path repo
 
-# for later work, use only lines with 'activate'
+# for later work, use:
 
+# . ./venv/bin/activate  # activate python virtual environment
+# . ./nodeenv/bin/activate # activate nodejs virtual environment

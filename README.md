@@ -1,6 +1,6 @@
 Unit tests for https://github.com/sbezo/chess-pairing and https://github.com/sbezo/chess-pairing-dev 
 
-Uses packages jsdom, jQuery and custom cookie wrapper, in NodeJs to test web page code.
+Uses packages jsdom, jQuery and custom cookie wrapper, to test web page code in NodeJs.
 
 Unit Test app is also custom.
 
