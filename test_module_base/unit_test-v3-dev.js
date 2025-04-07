@@ -1,6 +1,5 @@
-//import { jsdom }
 
-import { JSDOM } from "jsdom"
+import { JSDOM, CookieJar } from "jsdom"
 import fs from 'node:fs';
 
 let html = null
@@ -10,8 +9,21 @@ try {
   console.error(err);
 }
 
+let cookieJar = new CookieJar()
+
 import jQuery from 'jquery'
-globalThis.$ = jQuery(new JSDOM(html).window)
+globalThis.window = new JSDOM(html, {
+	url: "http://localhost/",
+  referrer: "http://localhost/",
+  contentType: "text/html",
+  includeNodeLocations: true,
+  storageQuota: 100000,
+  cookieJar
+}).window
+
+globalThis.document = window.document
+
+globalThis.$ = jQuery(globalThis.window)
 
 //Mock CookieConsent
 let CookieConsent = {
@@ -21,20 +33,6 @@ globalThis.CookieConsent = CookieConsent
 
 import { Tournament } from '../repo/core/Tournament.js'
 import { Controller } from '../repo/script.js'
-
-// create special document.cookie object for jsdom
-if (typeof document !== 'undefined') {
-	// in browser
-}
-else {
-	// in nodejs
-	// use unique class name 
-	class NodeDocument484948494849 {;}
-
-	globalThis.document = new NodeDocument484948494849()
-	document.cookie = {}
-}
-
 import { generateBergerPairingsIdx } from '../repo/berger-fide.js'
 
 // add names to global space
@@ -50,7 +48,7 @@ import { TestController } from './tests/v3/unit_test_controller.js'
 
 let ctx = new TestCtx()
 
-//execute_catch_exc(
+//ctx.execute_catch_exc(
 ctx.execute([
 	new TestTournament(),
 	new TestBergerPairing(),

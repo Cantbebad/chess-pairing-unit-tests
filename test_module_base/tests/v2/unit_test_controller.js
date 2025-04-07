@@ -1,11 +1,16 @@
 
 export class TestController {
 	_prepare_pure_clean_env() {
-		if (document && document.cookie) {
-			// we are in nodejs, this is correct
+		// remove all cookies from site
+		document.cookie.split(";").forEach(function(c) { 
+			document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" 
+				+ new Date().toUTCString() + ";path=/"); });
 
-			document.cookie = {}
-		}
+		/* not used in v2
+		window.localStorage.removeItem('trndata')
+		window.localStorage.removeItem('tournament-id=', null)
+		*/
+
 		let app = new Controller(new Tournament())
 
 		return app
@@ -18,8 +23,8 @@ export class TestController {
 		//console.log(app)
 
 		t.mini.assertEq(
-			app.data.tournamentInfo.autoShuffleOrderOfPlayers,
-			true
+			app.data.tournamentInfo.pairing_version,
+			1
 		)
 	}
 
@@ -28,14 +33,10 @@ export class TestController {
 		app.initialize()
 		app.testAll()
 
-		//console.log(app)
+		// console.log(app)
 
 		t.mini.assertEq(app.data.players.length, 10)
 		t.mini.assertEq(app.data.rounds.length, 9)
-		t.mini.assertEq(
-			app.data.tournamentInfo.title,
-			'Fictional Tournament'
-		)
 	}
 
 	test_if_demo_runs_after_browser_refresh(t) {
@@ -50,9 +51,5 @@ export class TestController {
 
 		t.mini.assertEq(app.data.players.length, 10)
 		t.mini.assertEq(app.data.rounds.length, 9)
-		t.mini.assertEq(
-			app.data.tournamentInfo.title,
-			'Fictional Tournament'
-		)
 	}
 }

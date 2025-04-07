@@ -1,9 +1,7 @@
 
 export class TestTournament {
 	_prepare_pure_clean_env() {
-		if (document && document.cookie) {
-			// we are in nodejs, this is correct
-
+		/*
 			// if fact, in Tournament, we can only saveToCookie now,
 			// loadFromCooike is in Controller
 			// probably it can be changed
@@ -12,8 +10,16 @@ export class TestTournament {
 			// this saveToCookie. All data in cookie are from Tournament,
 			// no data from Controller, but working with DOM is Controller thing.
 			// TODO: refactor: eliminate document.cookie from Tournament
-			document.cookie = {}
-		}
+		*/
+
+		// remove all cookies from site
+		document.cookie.split(";").forEach(function(c) { 
+			document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" 
+				+ new Date().toUTCString() + ";path=/"); });
+
+		window.localStorage.removeItem('trndata', null)
+		window.localStorage.removeItem('tournament-id=')
+
 		let tour = new Tournament()
 
 		return tour

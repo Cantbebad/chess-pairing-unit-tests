@@ -2,8 +2,6 @@ Unit tests for https://github.com/sbezo/chess-pairing and https://github.com/sbe
 
 Uses packages jsdom, jQuery and custom cookie wrapper, to test web page code in NodeJs.
 
-Unit Test app is also custom.
+Unit Test app is also custom, actually in repo chess-pairing-dev/module/SimpleUnitTester.js
 
-Added Dockerfile and some others files to run it from container.
-
-Instructions, how to use it locally with python and nodejs virtual enviromnents are in file: install_nodeenv.txt
+Jsdom requires a lot of other packages, so use this in docker container.

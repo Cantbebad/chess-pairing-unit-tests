@@ -31,26 +31,24 @@ let CookieConsent = {
 }
 globalThis.CookieConsent = CookieConsent
 
-import { Tournament, Controller } from '../repo/script.js'
+import { Tournament } from '../repo/core/Tournament.js'
+import { Controller } from '../repo/script.js'
 import { generateBergerPairingsIdx } from '../repo/berger-fide.js'
 
+// add names to global space
 globalThis.generateBergerPairingsIdx = generateBergerPairingsIdx
 globalThis.Tournament = Tournament
 globalThis.Controller = Controller
 
 import { TestCtx } from '../repo/modules/SimpleUnitTester.js'
 
-import { TestTournament } from './tests/v3/unit_test_tournament.js'
-import { TestBergerPairing } from './tests/v3/unit_test_berger_pairing.js'
-import { TestController } from './tests/v2/unit_test_controller.js'
+import { TestPerformance } from './tests/v3/performance_tests.js'
 
 let ctx = new TestCtx()
 
-// ctx.execute_catch_exc(
+//execute_catch_exc(
 ctx.execute([
-	new TestTournament(),
-	new TestBergerPairing(),
-	new TestController()
+	new TestPerformance()
 ])
 
 

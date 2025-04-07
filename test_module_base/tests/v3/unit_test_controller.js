@@ -1,11 +1,15 @@
+import { CookiesWrapper } from '../../../repo/modules/CookiesWrapper.js'
 
 export class TestController {
 	_prepare_pure_clean_env() {
-		if (document && document.cookie) {
-			// we are in nodejs, this is correct
+		// remove all cookies from site
+		document.cookie.split(";").forEach(function(c) { 
+			document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" 
+				+ new Date().toUTCString() + ";path=/"); });
 
-			document.cookie = {}
-		}
+		window.localStorage.removeItem('trndata')
+		window.localStorage.removeItem('tournament-id=', null)
+
 		let app = new Controller(new Tournament())
 
 		return app
@@ -55,4 +59,5 @@ export class TestController {
 			'Fictional Tournament'
 		)
 	}
+
 }
